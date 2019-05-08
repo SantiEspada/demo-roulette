@@ -1,6 +1,7 @@
 {
   "version": 2,
   "name": "ruleta-demo",
+  "alias": "ruletademo.ml",
   "builds": [
     { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "dist" } }
   ],
