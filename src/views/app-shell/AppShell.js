@@ -115,7 +115,7 @@ class AppShell extends LitElement {
   }
 
   _handleNewPerson({ detail: { person: name } }) {
-    this._adddPerson(name);
+    this._addPerson(name);
   }
 
   _swapColor({ detail: { color: currentColor }}) {
@@ -168,7 +168,6 @@ class AppShell extends LitElement {
     }, TIME_MAINTAIN_ROULETTE * 1000);
     setTimeout(() => {
       this._displayWinner = true;
-      this._displayRepeatButton = true;
     }, (TIME_MAINTAIN_ROULETTE + TIME_DISPLAY_WINNER) * 1000);
   }
 }
