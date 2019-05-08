@@ -10,6 +10,7 @@
     { "src": "/site.webmanifest", "dest": "/site.webmanifest" },
     { "src": "/browserconfig.xml", "dest": "/browserconfig.xml" },
     { "src": "/app.js", "headers": {"cache-control": "s-maxage=0"}, "dest": "/app.js" },
+    { "src": "/app.js.map", "headers": {"cache-control": "s-maxage=0"}, "dest": "/app.js.map" },
     { "src": "/app.css", "headers": {"cache-control": "s-maxage=0"}, "dest": "/app.css" },
     { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" }
   ]
