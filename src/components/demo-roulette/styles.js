@@ -1,10 +1,31 @@
 import { css } from 'lit-element';
 
 const styles = css`
+  :host {
+    display: block;
+    position: relative;
+  }
+
+  .triangle {
+    height: 0;
+    width: 0;
+    --size: 32px;
+    border-style: solid;
+    border-width: var(--size) calc(var(--size) / 2) 0 calc(var(--size) / 2);
+    border-color: #ffffff transparent transparent transparent;
+    filter: drop-shadow(0 0 3px rgba(0, 0, 0, .3));
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+  }
+
   svg {
-    width: 300px;
-    height: 300px;
+    width: 100%;
+    height: 100%;
     transition: transform var(--transition-duration) cubic-bezier(.51,1.16,.92,.99), height .3s;
+    shape-rendering: geometricPrecision;
   }
 
   svg.hidden {

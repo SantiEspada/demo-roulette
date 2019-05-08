@@ -6,15 +6,16 @@ export const getCoordinatesForPercent = (percent) => {
 
 export const getRandomColor = () => `hsl(${Math.random() * 360}, 70%, 70%)`;
 
-export const checkContrast = (newColor, existentColors) => {
+export const checkContrast = (newColor, existentColors, currentColor) => {
   if(existentColors.length === 0) return true;
 
   const getHue = (color) => Number(/[^hsl(]([0-9.]+)/.exec(color)[0]);
 
   const newHue = getHue(newColor)
   return existentColors.every(color => {
-    const hue = getHue(color);
+    if(color === currentColor) return true;
 
+    const hue = getHue(color);
     return ((newHue > (hue + 10)) || (newHue < (hue-10)));
   });
 }

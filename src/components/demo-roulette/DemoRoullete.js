@@ -2,7 +2,6 @@ import { LitElement, html } from 'lit-element';
 
 import {
   getCoordinatesForPercent,
-  getTextColorFromBackground,
 } from '../../utils';
 
 import styles from './styles';
@@ -27,11 +26,6 @@ const renderSlice = ({ color }, position, { length: total } = []) => {
   return `<path d="${pathData}" fill="${color}"></path>`;
 }
 
-const renderPerson = ({ name, color: bgColor }) => {
-  const textColor = getTextColorFromBackground(bgColor);
-  return html`<li style="--color:${textColor};--bg-color:${bgColor}">${name}</li>`;
-}
-
 class DemoRoulette extends LitElement {
   static get properties() {
     return {
@@ -54,15 +48,13 @@ class DemoRoulette extends LitElement {
 
   render() {
     return html`
-      <div class="demo-roulette">
-        <svg
-          class="${this.people.length > 0 ? '' : 'hidden'}"
-          viewBox="-1 -1 2 2"
-          style="--transition-duration: ${this.transitionDuration}s; transform: rotate(${this.spinning ? this.finalRotation : -90}deg);"
-        >
-        </svg>
-        <ul>${this.people.map(renderPerson)}</ul>
-      </div>
+      <div class="triangle"></div>
+      <svg
+        class="${this.people.length > 0 ? '' : 'hidden'}"
+        viewBox="-1 -1 2 2"
+        style="--transition-duration: ${this.transitionDuration}s; transform: rotate(${this.spinning ? this.finalRotation : -90}deg);"
+      >
+      </svg>
     `;
   }
 
