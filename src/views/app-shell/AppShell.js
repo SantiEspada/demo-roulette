@@ -116,9 +116,8 @@ class AppShell extends LitElement {
 
   _updateQueryParams() {
     const names = this._people.map(({ name }) => name).join(',');
-    const query = `?names=${names}`;
-
-    document.location.search = query;
+    const query = `/?names=${names}`;
+    window.history.pushState(null, '', query);    
   }
 
   _handleNewPerson({ detail: { person: name } }) {
