@@ -10,8 +10,8 @@
 @font-face {
   font-family: 'Futura';
   src: local('Futura Bold Italic'), local('FuturaBT-BoldItalic'),
-      url('FuturaBT-BoldItalic.woff2') format('woff2'),
-      url('FuturaBT-BoldItalic.woff') format('woff');
+      url('/assets/fonts/futura/FuturaBT-BoldItalic.woff2') format('woff2'),
+      url('/assets/fonts/futura/FuturaBT-BoldItalic.woff') format('woff');
   font-weight: bold;
   font-style: italic;
 }
