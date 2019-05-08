@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "name": "ruleta-demo",
+  "builds": [
+    { "src": "package.json", "use": "@now/static-build", "config": { "distDir": "dist" } }
+  ],
+  "routes": [
+    { "src": "/assets/(.*)", "headers": { "cache-control": "s-maxage=31536000,immutable" }, "dest": "/static/$1" },
+    { "src": "/favicon.ico", "dest": "/favicon.ico" },
+    { "src": "/site.webmanifest", "dest": "/site.webmanifest" },
+    { "src": "/browserconfig.xml", "dest": "/browserconfig.xml" },
+    { "src": "/app.css", "headers": {"cache-control": "s-maxage=0"}, "dest": "/app.css" },
+    { "src": "/(.*)", "headers": {"cache-control": "s-maxage=0"}, "dest": "/index.html" }
+  ]
+}

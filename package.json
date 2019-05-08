@@ -10,6 +10,7 @@
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "format": "npm run format:eslint && npm run format:prettier",
     "build": "rimraf dist && rollup -c rollup.config.js",
+    "now-build": "npm run build",
     "start:build": "http-server dist -o -c-1",
     "watch:build": "rimraf dist && rollup --watch -c rollup.config.js & http-server dist -o -c-1"
   },
@@ -30,7 +31,8 @@
     "owc-dev-server": "^0.3.0",
     "rimraf": "^2.6.3",
     "rollup": "^1.6.0",
-    "rollup-plugin-copy": "^2.0.1"
+    "rollup-plugin-copy": "^2.0.1",
+    "rollup-plugin-minify-html-literals": "^1.2.2"
   },
   "lint-staged": {
     "*.js": [
