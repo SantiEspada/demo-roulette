@@ -114,7 +114,7 @@ class AppShell extends LitElement {
     }
   }
 
-  __updateQueryParams() {
+  _updateQueryParams() {
     const names = this._people.map(({ name }) => name).join(',');
     const query = `?names=${names}`;
 
