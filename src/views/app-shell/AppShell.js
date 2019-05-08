@@ -114,6 +114,13 @@ class AppShell extends LitElement {
     }
   }
 
+  __updateQueryParams() {
+    const names = this._people.map(({ name }) => name).join(',');
+    const query = `?names=${names}`;
+
+    document.location.search = query;
+  }
+
   _handleNewPerson({ detail: { person: name } }) {
     this._addPerson(name);
   }
@@ -147,6 +154,7 @@ class AppShell extends LitElement {
   _spinRoulette() {
     if (this._people.length < 2) return;
 
+    this._updateQueryParams();
     this._displayRoulette = true;
     setTimeout(() => {
       this._rouletteSpinning = true;
