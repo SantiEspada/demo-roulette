@@ -49,7 +49,7 @@ class AppShell extends LitElement {
         <animated-logo class="fullWidth ${this._logoUp ? 'up' : ''}" animate></animated-logo>
         <people-selector
           class="fullWidth ${this._displayPeopleSelector && !this._displayRoulette ? '' : 'hidden'}"
-          @person-added="${this._addPerson}"
+          @person-added="${this._handleNewPerson}"
           @person-deleted="${this._deletePerson}"
           @person-swap-color="${this._swapColor}"
           .people="${this._people}"
@@ -77,6 +77,7 @@ class AppShell extends LitElement {
   }
 
   firstUpdated() {
+    this._checkQueryParams();
     setTimeout(() => {
       this._logoUp = true;
       this._displayPeopleSelector = true;
@@ -91,7 +92,7 @@ class AppShell extends LitElement {
     return this._displayWinner;
   }
 
-  _addPerson({ detail: { person: name } }) {
+  _addPerson(name) {
     let newColor = getRandomColor();
     const existentColors = this._people.map(({ color }) => color);
     while(!checkContrast(newColor, existentColors)) {
@@ -103,6 +104,18 @@ class AppShell extends LitElement {
     };
 
     this._people = [...this._people, person];
+  }
+
+  _checkQueryParams() {
+    const query = document.location.search;
+    if (/\?names=/.test(query)) {
+      const names = query.replace('?names=', '').split(',');
+      names.forEach(name => this._addPerson(name));
+    }
+  }
+
+  _handleNewPerson({ detail: { person: name } }) {
+    this._adddPerson(name);
   }
 
   _swapColor({ detail: { color: currentColor }}) {
