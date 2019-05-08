@@ -22,7 +22,7 @@ const styles = css`
     -webkit-text-fill-color: transparent;
     background-color: #fff;
     background-image: linear-gradient(transparent 40%, var(--bg-color));
-    font-style: italic;
+    font-family: 'Futura';
     text-shadow: 0 0 30px rgba(255, 255, 255, .3);
     opacity: 0;
   }

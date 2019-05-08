@@ -23,10 +23,12 @@ class AppShell extends LitElement {
     return {
       _people: { type: Array },
       _logoUp: { type: Boolean },
-      _showPeopleSelector: { type: Boolean },
-      _showRoulette: { type: Boolean },
+      _displayPeopleSelector: { type: Boolean },
+      _displayRoulette: { type: Boolean },
       _rouletteSpinning: { type: Boolean },
       _displayWinner: { type: Boolean },
+      _displaySpinButton: { type: Boolean },
+      _displayRepeatButton: { type: Boolean },
       _winner: { type: Object },
     }
   }
@@ -34,8 +36,8 @@ class AppShell extends LitElement {
   constructor() {
     super();
     this._people = [];
-    this._showPeopleSelector = false;
-    this._showRoulette = false;
+    this._displayPeopleSelector = false;
+    this._displayRoulette = false;
     this._rouletteSpinning = false;
     this._displayWinner = false;
     this._winner = { name: '', color: ''};
@@ -46,20 +48,30 @@ class AppShell extends LitElement {
       <main>
         <animated-logo class="fullWidth ${this._logoUp ? 'up' : ''}" animate></animated-logo>
         <people-selector
-          class="fullWidth ${this._showPeopleSelector && !this._showRoulette ? '' : 'hidden'}"
+          class="fullWidth ${this._displayPeopleSelector && !this._displayRoulette ? '' : 'hidden'}"
           @person-added="${this._addPerson}"
           @person-deleted="${this._deletePerson}"
           @person-swap-color="${this._swapColor}"
           .people="${this._people}"
         ></people-selector>
         <demo-roulette
-          class="fullWidth ${this._showRoulette ? '' : 'hidden'}"
+          class="fullWidth ${this._displayRoulette ? '' : 'hidden'}"
           @winner-selected="${this._handleWinner}"
           .spinning="${this._rouletteSpinning}"
           .people="${this._people}"
         ></demo-roulette>
         <display-winner .winner="${this._winner}" .display="${this._displayWinner}"></display-winner>
-        <button @click="${this._spinRoulette}">Tira de la ruletaaaa</button>
+        <button
+          class="${this._displaySpinButton ? '' : 'hidden'}"
+          @click="${this._spinRoulette}"
+        >
+          Tira de la ruletaaaa
+        </button><button
+          class="${this._displayRepeatButton ? '' : 'hidden'}"
+          @click="${this._reSpinRoulette}"
+        >
+          Repetir
+        </button>
       </main>
     `;
   }
@@ -67,8 +79,16 @@ class AppShell extends LitElement {
   firstUpdated() {
     setTimeout(() => {
       this._logoUp = true;
-      this._showPeopleSelector = true;
+      this._displayPeopleSelector = true;
     }, TIME_REVEAL * 1000);
+  }
+
+  get _displaySpinButton() {
+    return this._displayPeopleSelector && !this._displayRoulette && this._people.length >= 2;
+  }
+
+  get _displayRepeatButton() {
+    return this._displayWinner;
   }
 
   _addPerson({ detail: { person: name } }) {
@@ -112,19 +132,31 @@ class AppShell extends LitElement {
   }
 
   _spinRoulette() {
-    this._showRoulette = true;
+    if (this._people.length < 2) return;
+
+    this._displayRoulette = true;
     setTimeout(() => {
       this._rouletteSpinning = true;
     }, TIME_START_ROULETTE * 1000);
   }
 
+  _reSpinRoulette() {
+    this._displayWinner = false;
+    const roulette = this.shadowRoot.querySelector('demo-roulette');
+    roulette.reSpin();
+    this._displayRoulette = true;
+  }
+
   _handleWinner({ detail: { winner } }) {
     this._winner = winner;
     setTimeout(() => {
-      this._showRoulette = false;
-      this._showPeopleSelector = false;
+      this._displayRoulette = false;
+      this._displayPeopleSelector = false;
     }, TIME_MAINTAIN_ROULETTE * 1000);
-    setTimeout(() => { this._displayWinner = true }, (TIME_MAINTAIN_ROULETTE + TIME_DISPLAY_WINNER) * 1000);
+    setTimeout(() => {
+      this._displayWinner = true;
+      this._displayRepeatButton = true;
+    }, (TIME_MAINTAIN_ROULETTE + TIME_DISPLAY_WINNER) * 1000);
   }
 }
 

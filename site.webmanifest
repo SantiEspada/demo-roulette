@@ -1,0 +1,19 @@
+{
+    "name": "La Ruleta de la Demo",
+    "short_name": "La Ruleta de la Demo",
+    "icons": [
+        {
+            "src": "/assets/images/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/assets/images/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#0d3f61",
+    "background_color": "#0d3f61",
+    "display": "standalone"
+}

@@ -77,8 +77,6 @@ class DemoRoulette extends LitElement {
   }
 
   reSpin() {
-    this._dispatchWinner();
-
     this.transitionDuration = 0;
     this.spinning = false;
     setTimeout(() => {

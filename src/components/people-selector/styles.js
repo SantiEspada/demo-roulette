@@ -29,7 +29,7 @@ const styles = css`
     position: relative;
     display: flex;
     width: 100%;
-    background-color: rgba(255, 255, 255, .5);
+    background-color: rgba(255, 255, 255, .2);
     border-radius: calc(var(--border-radius-total));
     align-items: center;
     padding: var(--border-width);
@@ -52,7 +52,7 @@ const styles = css`
 
   form input:focus,
   form button:focus {
-    box-shadow: 0 0 0 var(--border-width) rgba(255, 255, 255, .5);
+    box-shadow: 0 0 0 var(--border-width) rgba(255, 255, 255, .3);
   }
 
   form input {

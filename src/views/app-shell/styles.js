@@ -61,7 +61,36 @@ const styles = css`
   button {
     position: fixed;
     bottom: 60px;
-    font-size: small;
+    font-family: 'Futura';
+    text-transform: uppercase;
+    color: #fff;
+    padding: 16px 32px;
+    font-size: 24px;
+    border-radius: 999px;
+    background-color: rgba(255, 255, 255, .2);
+    border: 4px solid transparent;
+    cursor: pointer;
+    outline: none;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, .5);
+    transition: .3s;
+  }
+
+  button.hidden {
+    transform: translateY(30%);
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  button:not(.hidden):hover {
+    transform: translateY(-5%);
+  }
+
+  button:not(.hidden):focus {
+    border-color: rgba(255, 255, 255, .3);
+  }
+
+  button:not(.hidden):active {
+    transform: translateY(0);
   }
 
   /* main > *:not(display-winner) {

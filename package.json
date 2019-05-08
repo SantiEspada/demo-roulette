@@ -29,7 +29,8 @@
     "lint-staged": "^8.0.0",
     "owc-dev-server": "^0.3.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.6.0"
+    "rollup": "^1.6.0",
+    "rollup-plugin-copy": "^2.0.1"
   },
   "lint-staged": {
     "*.js": [

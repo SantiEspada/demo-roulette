@@ -1,3 +1,15 @@
 import createDefaultConfig from '@open-wc/building-rollup/modern-config';
+import copy from 'rollup-plugin-copy';
 
-export default createDefaultConfig({ input: './src/index.html' });
+const config = createDefaultConfig({ input: './src/index.html' });
+
+export default {
+  ...config,
+  plugins: [
+    ...config.plugins,
+    copy({
+      targets: [ 'assets '],
+      outputFolder: 'dist'
+    })
+  ]
+};
