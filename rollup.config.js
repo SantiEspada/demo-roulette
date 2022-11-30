@@ -6,25 +6,25 @@ import copy from 'rollup-plugin-copy';
 const config = createDefaultConfig({ input: './src/index.html' });
 const production = !process.env.ROLLUP_WATCH;
 
-const basePlugins = production ? [...config.plugins.slice(1)] : [...config.plugins]
+const basePlugins = production ? [...config.plugins.slice(1)] : [...config.plugins];
 
 export default {
   ...config,
   plugins: [
     ...basePlugins,
-    production && 
+    production &&
       minifyHTML({
-        failOnError: true,
+        // failOnError: true,
         removeAttributeQuotes: false,
       }),
     copy({
       targets: {
-        'assets': 'dist/assets',
+        assets: 'dist/assets',
         'favicon.ico': 'dist/favicon.ico',
         'site.webmanifest': 'dist/site.webmanifest',
         'browserconfig.xml': 'dist/browserconfig.xml',
-        'src/app.css': 'dist/app.css'
-      }
-    })
-  ]
+        'src/app.css': 'dist/app.css',
+      },
+    }),
+  ],
 };
